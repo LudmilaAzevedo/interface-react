@@ -82,6 +82,25 @@ class LivroRequests {
             return false;
         }
     }
+
+    async removerLivro(idLivro: number): Promise<boolean> {
+        const token = localStorage.getItem('token');
+        try {
+            const respostaAPI = await fetch(`${this.serverURL}${this.routeRemoveLivro}?idLivro=${idLivro}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json',
+                    'x-access-token': `${token}`
+                }
+            
+
+        });
+        } catch (error) {
+            console.error(`Erro ao fazer solicitação. ${error}`);
+            return false;
+        }
+    }
+
 }
 
 // Exporta a classe já com um objeto instanciado para ser usado diretamente
